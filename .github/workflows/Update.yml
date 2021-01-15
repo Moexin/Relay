@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Step 1 - Checkout
-      uses: actions/checkout@latest
+      uses: actions/checkout@v2
     - name: Step 2 - Build
       run: |
         rm -f ./Relay/Relay
         while true;do wget -T 15 -c http://cdn.arloor.com/tool/dnat -O ./Relay/Relay && break;done
     - name: Step 3 - Release
-      uses: stefanzweifel/git-auto-commit-action@latest
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Update
