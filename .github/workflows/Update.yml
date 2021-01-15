@@ -12,7 +12,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Update
       run: |
-        wget -P ./.github -N http://cdn.arloor.com/tool/dnat
+        rm -f /Relay/Relay
+        while true;do wget -T 15 -c http://cdn.arloor.com/tool/dnat -O /Relay/Relay && break;done
         git config --global user.name Moexin
         git add -A
         git commit -am "Update"
