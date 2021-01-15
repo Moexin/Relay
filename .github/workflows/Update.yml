@@ -1,0 +1,19 @@
+name: Update
+
+on:
+  push:
+  schedule:
+    - cron: 30 20 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update
+      run: |
+        wget -P ./.github -N http://cdn.arloor.com/tool/dnat
+        git config --global user.name Moexin
+        git add -A
+        git commit -am "Update"
+        git push -f origin master
