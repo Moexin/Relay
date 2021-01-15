@@ -30,17 +30,17 @@ EOF
 echo '正在启动转发'
 systemctl daemon-reload
 systemctl enable --now Relay
-echo "30 4 * * * systemctl restart nat" >> /var/spool/cron/crontabs/root
+echo "30 4 * * * systemctl restart Relay" >> /var/spool/cron/crontabs/root
 export EDITOR="/usr/bin/vim.tiny" ;
 crontab -e <<EOF
 :wq
 EOF
 echo '正在安装内核'
 while true;do wget -T 15 -c -q https://raw.githubusercontent.com/Moexin/BBRPlus/master/linux-headers-4.14.129-bbrplus.deb && break;done
-dpkg -i linux-headers-4.14.129-bbrplus.deb
+dpkg -i linux-headers-4.14.129-bbrplus.deb > /dev/null
 rm -f linux-headers-4.14.129-bbrplus.deb
 while true;do wget -T 15 -c -q https://raw.githubusercontent.com/Moexin/BBRPlus/master/linux-image-4.14.129-bbrplus.deb && break;done
-dpkg -i linux-image-4.14.129-bbrplus.deb
+dpkg -i linux-image-4.14.129-bbrplus.deb > /dev/null
 rm -f linux-image-4.14.129-bbrplus.deb
 echo '优化系统配置'
 cat << EOF >> /etc/sysctl.conf
@@ -67,6 +67,6 @@ net.ipv4.tcp_max_orphans = 32768
 # forward ipv4
 net.ipv4.ip_forward = 1
 EOF
-sysctl -p
+sysctl -p > /dev/null
 echo '重启系统生效'
 reboot
