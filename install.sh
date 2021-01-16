@@ -6,7 +6,7 @@ apt-get update -y > /dev/null
 apt-get upgrade -y > /dev/null
 echo '正在安装依赖'
 apt-get --purge autoremove iptables -y > /dev/null
-apt-get install cron curl wget vim-tiny nftables -y > /dev/null
+apt-get install cron curl wget chrony vim-tiny nftables -y > /dev/null
 echo '正在安装转发'
 mkdir /root/Relay
 cd /root/Relay
@@ -31,6 +31,9 @@ EOF
 echo '正在启动转发'
 systemctl daemon-reload
 systemctl enable --now Relay
+echo '启动自动校时'
+systemctl enable --now chrony
+chronyc makestep
 echo '设置定时重启'
 echo "30 4 * * * systemctl restart Relay" >> /var/spool/cron/crontabs/root
 export EDITOR="/usr/bin/vim.tiny" ;
