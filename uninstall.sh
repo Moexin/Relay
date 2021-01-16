@@ -11,7 +11,7 @@ rm -f /lib/systemd/system/Relay.service
 rm -rf /root/Relay
 echo '删除定时任务'
 sed -i '/Relay/d' /var/spool/cron/crontabs/root
-export EDITOR="/usr/bin/vim.tiny" ;
+export EDITOR="/usr/bin/vim.tiny";
 crontab -e <<EOF
 :wq
 EOF

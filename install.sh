@@ -34,7 +34,7 @@ systemctl enable --now chrony
 chronyc makestep
 echo '设置定时重启'
 echo "30 4 * * * systemctl restart Relay" >> /var/spool/cron/crontabs/root
-export EDITOR="/usr/bin/vim.tiny" ;
+export EDITOR="/usr/bin/vim.tiny";
 crontab -e <<EOF
 :wq
 EOF
