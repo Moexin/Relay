@@ -8,7 +8,6 @@ echo '正在安装依赖'
 apt-get --purge autoremove iptables -y > /dev/null
 apt-get install cron curl wget chrony vim-tiny nftables -y > /dev/null
 echo '正在安装转发'
-mkdir /root/Relay
 while true;do wget -P /root/Relay -T 15 -c -q https://cdn.jsdelivr.net/gh/Moexin/Relay/Relay/Relay && break;done
 chmod +x /root/Relay/Relay
 while true;do wget -P /root/Relay -T 15 -c -q https://cdn.jsdelivr.net/gh/Moexin/Relay/Relay/Relay.conf && break;done
