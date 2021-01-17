@@ -1,6 +1,4 @@
 #!/bin/bash
-echo '正在设置时区'
-dpkg-reconfigure tzdata
 echo '正在更新系统'
 apt-get update -y > /dev/null
 apt-get upgrade -y > /dev/null
@@ -29,6 +27,8 @@ EOF
 echo '正在启动转发'
 systemctl daemon-reload
 systemctl enable --now Relay
+echo '正在设置时区'
+timedatectl set-timezone Asia/Shanghai
 echo '启动自动校时'
 systemctl enable --now chrony
 chronyc makestep
